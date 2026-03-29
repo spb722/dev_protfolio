@@ -3,10 +3,22 @@ import { motion, useScroll, useSpring } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 import { ArrowLeft } from 'lucide-react';
 import { posts } from '../data/posts';
 import { useState, useEffect } from 'react';
 import { useTheme } from '../components/ThemeProvider';
+
+// Dynamically import all images in the blogs directory
+const imageFiles = import.meta.glob('/src/content/blogs/**/*.{png,jpg,jpeg,gif,svg,webp}', {
+  eager: true,
+  import: 'default',
+});
 
 export default function BlogPost() {
   const { id } = useParams<{ id: string }>();
@@ -88,10 +100,30 @@ export default function BlogPost() {
 
         <div className="markdown-body">
           <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
             components={{
-              img: ({node, ...props}) => (
-                <img {...props} referrerPolicy="no-referrer" alt={props.alt || 'Blog image'} />
-              ),
+              p: ({ node, children }) => {
+                const hasImage = node?.children?.some(
+                  (child: any) => child.tagName === 'img'
+                );
+                if (hasImage) {
+                  return <div className="my-6">{children}</div>;
+                }
+                return <p>{children}</p>;
+              },
+              img: ({node, src, ...props}) => {
+                let resolvedSrc = src;
+                if (src?.startsWith('./') && post) {
+                  const imagePath = `/src/content/blogs/${post.id}/${src.replace('./', '')}`;
+                  resolvedSrc = (imageFiles[imagePath] as string) || src;
+                }
+                return (
+                  <Zoom>
+                    <img {...props} src={resolvedSrc} referrerPolicy="no-referrer" alt={props.alt || 'Blog image'} />
+                  </Zoom>
+                );
+              },
               code({node, inline, className, children, ...props}: any) {
                 const match = /language-(\w+)/.exec(className || '');
                 return !inline && match ? (
