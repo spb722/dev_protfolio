@@ -23,7 +23,7 @@ export default function Portfolio() {
             key={project.id}
             whileHover={{ y: -4, scale: 1.01 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="group flex flex-col p-8 rounded-3xl border border-line bg-white/5 hover:bg-white/10 transition-colors"
+            className="group flex flex-col p-8 rounded-3xl border border-line bg-card hover:bg-card-hover transition-colors"
           >
             <div className="flex justify-between items-start mb-6">
               <h2 className="text-2xl font-semibold group-hover:text-accent transition-colors">{project.title}</h2>
@@ -37,7 +37,7 @@ export default function Portfolio() {
             <div className="space-y-6">
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
-                  <span key={tech} className="px-3 py-1 text-xs rounded-full bg-black/50 text-gray-300 border border-line">
+                  <span key={tech} className="px-3 py-1 text-xs rounded-full bg-tag text-tag-text border border-line">
                     {tech}
                   </span>
                 ))}
@@ -49,7 +49,7 @@ export default function Portfolio() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-white transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-ink transition-colors"
                   >
                     <Github size={16} />
                     Code
@@ -60,7 +60,7 @@ export default function Portfolio() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-white transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-ink transition-colors"
                   >
                     <ExternalLink size={16} />
                     Live Demo

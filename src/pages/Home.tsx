@@ -30,13 +30,13 @@ export default function Home() {
         <div className="flex gap-4 pt-4">
           <Link
             to="/portfolio"
-            className="px-6 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors"
+            className="px-6 py-3 bg-ink text-bg font-medium rounded-lg hover:opacity-90 transition-opacity"
           >
             View Projects
           </Link>
           <Link
             to="/blog"
-            className="px-6 py-3 bg-transparent border border-line text-white font-medium rounded-lg hover:bg-white/5 transition-colors"
+            className="px-6 py-3 bg-transparent border border-line text-ink font-medium rounded-lg hover:bg-card transition-colors"
           >
             Read Blog
           </Link>
@@ -55,7 +55,7 @@ export default function Home() {
             <Link
               key={project.id}
               to="/portfolio"
-              className="group block p-6 rounded-2xl border border-line bg-white/5 hover:bg-white/10 transition-colors"
+              className="group block p-6 rounded-2xl border border-line bg-card hover:bg-card-hover transition-colors"
             >
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-lg font-medium group-hover:text-accent transition-colors">{project.title}</h3>
@@ -64,12 +64,12 @@ export default function Home() {
               <p className="text-muted text-sm mb-6 line-clamp-2">{project.description}</p>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.slice(0, 3).map((tech) => (
-                  <span key={tech} className="px-2 py-1 text-xs rounded-md bg-black/50 text-gray-300 border border-line">
+                  <span key={tech} className="px-2 py-1 text-xs rounded-md bg-tag text-tag-text border border-line">
                     {tech}
                   </span>
                 ))}
                 {project.technologies.length > 3 && (
-                  <span className="px-2 py-1 text-xs rounded-md bg-black/50 text-gray-500 border border-line">
+                  <span className="px-2 py-1 text-xs rounded-md bg-tag text-tag-text border border-line">
                     +{project.technologies.length - 3}
                   </span>
                 )}
@@ -91,7 +91,7 @@ export default function Home() {
             <Link
               key={post.id}
               to={`/blog/${post.id}`}
-              className="group block p-6 rounded-2xl border border-line bg-white/5 hover:bg-white/10 transition-colors"
+              className="group block p-6 rounded-2xl border border-line bg-card hover:bg-card-hover transition-colors"
             >
               <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 mb-3">
                 <time className="text-sm font-mono text-muted shrink-0">

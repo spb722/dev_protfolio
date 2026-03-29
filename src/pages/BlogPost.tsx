@@ -1,13 +1,17 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { ArrowLeft } from 'lucide-react';
 import { posts } from '../data/posts';
 import { useState, useEffect } from 'react';
+import { useTheme } from '../components/ThemeProvider';
 
 export default function BlogPost() {
   const { id } = useParams<{ id: string }>();
   const post = posts.find((p) => p.id === id);
+  const { theme } = useTheme();
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -45,7 +49,7 @@ export default function BlogPost() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: readingPercent > 0 ? 1 : 0, y: readingPercent > 0 ? 0 : 20 }}
-        className="fixed bottom-8 right-8 bg-white/10 backdrop-blur-md border border-line px-4 py-2 rounded-full text-sm font-mono z-50 shadow-lg"
+        className="fixed bottom-8 right-8 bg-card/80 backdrop-blur-md border border-line px-4 py-2 rounded-full text-sm font-mono z-50 shadow-lg text-ink"
       >
         {readingPercent}% Read
       </motion.div>
@@ -56,7 +60,7 @@ export default function BlogPost() {
         transition={{ duration: 0.5 }}
         className="max-w-3xl mx-auto"
       >
-        <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted hover:text-white mb-8 transition-colors">
+        <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink mb-8 transition-colors">
           <ArrowLeft size={16} />
           Back to blog
         </Link>
@@ -68,7 +72,7 @@ export default function BlogPost() {
             </time>
             <div className="flex gap-2">
               {post.tags.map((tag) => (
-                <span key={tag} className="px-2 py-1 text-xs rounded-md bg-white/10 text-gray-300">
+                <span key={tag} className="px-2 py-1 text-xs rounded-md bg-tag text-tag-text border border-line">
                   {tag}
                 </span>
               ))}
@@ -87,7 +91,24 @@ export default function BlogPost() {
             components={{
               img: ({node, ...props}) => (
                 <img {...props} referrerPolicy="no-referrer" alt={props.alt || 'Blog image'} />
-              )
+              ),
+              code({node, inline, className, children, ...props}: any) {
+                const match = /language-(\w+)/.exec(className || '');
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    {...props}
+                    children={String(children).replace(/\n$/, '')}
+                    style={theme === 'dark' ? vscDarkPlus : vs}
+                    language={match[1]}
+                    PreTag="div"
+                    className="syntax-highlighter-container rounded-lg !my-6 border border-line"
+                  />
+                ) : (
+                  <code {...props} className={className}>
+                    {children}
+                  </code>
+                );
+              }
             }}
           >
             {post.content}

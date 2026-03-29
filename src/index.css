@@ -4,14 +4,45 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-card: var(--card-bg);
+  --color-card-hover: var(--card-hover);
+  --color-tag: var(--tag-bg);
+  --color-tag-text: var(--tag-text);
 }
 
 :root {
+  --bg: #ffffff;
+  --ink: #0a0a0a;
+  --line: #e5e5e5;
+  --accent: #3b82f6;
+  --muted: #525252;
+  --text-body: #404040;
+  --card-bg: #f9fafb;
+  --card-hover: #f3f4f6;
+  --tag-bg: #f3f4f6;
+  --tag-text: #525252;
+  --code-bg: #f3f4f6;
+  --quote-bg: rgba(59, 130, 246, 0.05);
+}
+
+.dark {
   --bg: #0a0a0a;
   --ink: #fafafa;
   --line: #262626;
   --accent: #3b82f6;
   --muted: #a3a3a3;
+  --text-body: #d4d4d4;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-hover: rgba(255, 255, 255, 0.1);
+  --tag-bg: rgba(0, 0, 0, 0.5);
+  --tag-text: #d4d4d4;
+  --code-bg: #171717;
+  --quote-bg: rgba(255, 255, 255, 0.03);
 }
 
 body {
@@ -19,6 +50,7 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .markdown-body {
@@ -52,7 +84,7 @@ body {
 
 .markdown-body p {
   margin-bottom: 1.25rem;
-  color: #d4d4d4;
+  color: var(--text-body);
 }
 
 .markdown-body a {
@@ -68,22 +100,22 @@ body {
   list-style-type: disc;
   padding-left: 1.5rem;
   margin-bottom: 1.25rem;
-  color: #d4d4d4;
+  color: var(--text-body);
 }
 
 .markdown-body ol {
   list-style-type: decimal;
   padding-left: 1.5rem;
   margin-bottom: 1.25rem;
-  color: #d4d4d4;
+  color: var(--text-body);
 }
 
 .markdown-body blockquote {
   border-left: 4px solid var(--accent);
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: var(--quote-bg);
   padding: 1rem 1.5rem;
   border-radius: 0 0.5rem 0.5rem 0;
-  color: #e5e5e5;
+  color: var(--ink);
   font-style: italic;
   margin-bottom: 1.5rem;
   margin-top: 1.5rem;
@@ -100,15 +132,15 @@ body {
 
 .markdown-body code {
   font-family: var(--font-mono);
-  background-color: #171717;
+  background-color: var(--code-bg);
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
   font-size: 0.875em;
-  color: #e5e5e5;
+  color: var(--ink);
 }
 
 .markdown-body pre {
-  background-color: #171717;
+  background-color: var(--code-bg);
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
@@ -116,9 +148,10 @@ body {
   border: 1px solid var(--line);
 }
 
-.markdown-body pre code {
-  background-color: transparent;
-  padding: 0;
-  border-radius: 0;
-  color: #e5e5e5;
+.markdown-body pre code,
+.markdown-body .syntax-highlighter-container code {
+  background-color: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  color: inherit !important;
 }

@@ -1,9 +1,11 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, Sun, Moon } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useTheme } from './ThemeProvider';
 
 export default function Layout() {
   const location = useLocation();
+  const { theme, setTheme } = useTheme();
 
   const navLinks = [
     { path: '/', label: 'Home' },
@@ -15,33 +17,43 @@ export default function Layout() {
     <div className="min-h-screen flex flex-col max-w-4xl mx-auto px-6 py-12 md:py-20">
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6">
         <div>
-          <Link to="/" className="text-2xl font-semibold tracking-tight text-white hover:text-accent transition-colors">
+          <Link to="/" className="text-2xl font-semibold tracking-tight text-ink hover:text-accent transition-colors">
             Alex.dev
           </Link>
           <p className="text-muted text-sm mt-1 font-mono">Data Scientist & LLM Engineer</p>
         </div>
         
-        <nav className="flex gap-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`text-sm font-medium transition-colors relative ${
-              location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path))
-                ? 'text-white'
-                : 'text-muted hover:text-white'
-            }`}
-            >
-              {link.label}
-              {(location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path))) && (
-                <motion.div
-                  layoutId="underline"
-                  className="absolute left-0 right-0 h-0.5 bg-accent -bottom-1"
-                />
-              )}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center gap-6">
+          <nav className="flex gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`text-sm font-medium transition-colors relative ${
+                  location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path))
+                    ? 'text-ink'
+                    : 'text-muted hover:text-ink'
+                }`}
+              >
+                {link.label}
+                {(location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path))) && (
+                  <motion.div
+                    layoutId="underline"
+                    className="absolute left-0 right-0 h-0.5 bg-accent -bottom-1"
+                  />
+                )}
+              </Link>
+            ))}
+          </nav>
+          
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="p-2 rounded-full hover:bg-card transition-colors text-muted hover:text-ink"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+        </div>
       </header>
 
       <main className="flex-grow">
@@ -51,16 +63,16 @@ export default function Layout() {
       <footer className="mt-24 pt-8 border-t border-line flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted">
         <p>© {new Date().getFullYear()} Alex. All rights reserved.</p>
         <div className="flex gap-4">
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
+          <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors">
             <Github size={18} />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
+          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors">
             <Linkedin size={18} />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
+          <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors">
             <Twitter size={18} />
           </a>
-          <a href="mailto:hello@example.com" className="hover:text-white transition-colors">
+          <a href="mailto:hello@example.com" className="hover:text-ink transition-colors">
             <Mail size={18} />
           </a>
         </div>

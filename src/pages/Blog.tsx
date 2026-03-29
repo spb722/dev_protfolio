@@ -22,7 +22,7 @@ export default function Blog() {
           <Link
             key={post.id}
             to={`/blog/${post.id}`}
-            className="group block p-6 rounded-2xl border border-line bg-white/5 hover:bg-white/10 transition-colors"
+            className="group block p-6 rounded-2xl border border-line bg-card hover:bg-card-hover transition-colors"
           >
             <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 mb-3">
               <time className="text-sm font-mono text-muted shrink-0">
@@ -33,7 +33,7 @@ export default function Blog() {
             <p className="text-muted text-base md:ml-[110px] mb-4">{post.summary}</p>
             <div className="flex flex-wrap gap-2 md:ml-[110px]">
               {post.tags.map((tag) => (
-                <span key={tag} className="px-2 py-1 text-xs rounded-md bg-black/50 text-gray-300 border border-line">
+                <span key={tag} className="px-2 py-1 text-xs rounded-md bg-tag text-tag-text border border-line">
                   {tag}
                 </span>
               ))}
