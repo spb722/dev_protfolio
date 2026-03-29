@@ -13,7 +13,7 @@ export default function Portfolio() {
       <header className="space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Portfolio</h1>
         <p className="text-lg text-muted max-w-2xl">
-          A collection of my recent work in Data Science, Machine Learning, and Full-Stack Development.
+          A collection of my work in LLM Engineering, Multi-Agent Systems, and ML Systems Design — shipped to production in Telecom.
         </p>
       </header>
 

@@ -21,11 +21,12 @@ export default function Home() {
           <span>Hello, World!</span>
         </div>
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
-          I build intelligent systems and write about data science.
+          I build production AI systems and write about LLMs & ML engineering.
         </h1>
         <p className="text-lg text-muted max-w-2xl leading-relaxed">
-          I'm a software engineer specializing in Large Language Models and Data Science. 
-          I love turning complex data into actionable insights and building tools that empower others.
+          AI/ML Engineer & Team Lead with 7 years building production AI systems in Telecom.
+          I specialize in multi-agent LLM architectures, RAG pipelines, and high-throughput inference —
+          shipping systems that serve millions of end-users.
         </p>
         <div className="flex gap-4 pt-4">
           <Link

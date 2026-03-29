@@ -18,9 +18,9 @@ export default function Layout() {
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6">
         <div>
           <Link to="/" className="text-2xl font-semibold tracking-tight text-ink hover:text-accent transition-colors">
-            Alex.dev
+            Sachin.dev
           </Link>
-          <p className="text-muted text-sm mt-1 font-mono">Data Scientist & LLM Engineer</p>
+          <p className="text-muted text-sm mt-1 font-mono">AI/ML Engineer & Team Lead</p>
         </div>
         
         <div className="flex items-center gap-6">
@@ -61,18 +61,18 @@ export default function Layout() {
       </main>
 
       <footer className="mt-24 pt-8 border-t border-line flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted">
-        <p>© {new Date().getFullYear()} Alex. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Sachin P B. All rights reserved.</p>
         <div className="flex gap-4">
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors">
+          <a href="https://github.com/spb722" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors">
             <Github size={18} />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors">
+          <a href="https://www.linkedin.com/in/sachin-pb-76270b163/" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors">
             <Linkedin size={18} />
           </a>
           <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-ink transition-colors">
             <Twitter size={18} />
           </a>
-          <a href="mailto:hello@example.com" className="hover:text-ink transition-colors">
+          <a href="mailto:spb722@gmail.com" className="hover:text-ink transition-colors">
             <Mail size={18} />
           </a>
         </div>
