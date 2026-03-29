@@ -19,8 +19,10 @@ export default function Portfolio() {
 
       <div className="grid md:grid-cols-2 gap-8">
         {projects.map((project) => (
-          <div
+          <motion.div
             key={project.id}
+            whileHover={{ y: -4, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
             className="group flex flex-col p-8 rounded-3xl border border-line bg-white/5 hover:bg-white/10 transition-colors"
           >
             <div className="flex justify-between items-start mb-6">
@@ -66,7 +68,7 @@ export default function Portfolio() {
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </motion.div>

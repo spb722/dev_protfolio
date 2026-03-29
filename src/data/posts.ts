@@ -19,9 +19,13 @@ export const posts: BlogPost[] = [
 
 Large Language Models (LLMs) have taken the world by storm. But what exactly goes on under the hood?
 
+> "Attention is all you need." — Vaswani et al., 2017. This single phrase revolutionized natural language processing and paved the way for modern LLMs.
+
 ## The Transformer Architecture
 
-At the heart of modern LLMs is the Transformer architecture, introduced in the seminal paper "Attention Is All You Need". Unlike previous recurrent neural networks (RNNs), Transformers process entire sequences of text simultaneously, allowing for massive parallelization during training.
+At the heart of modern LLMs is the Transformer architecture, introduced in the seminal paper mentioned above. Unlike previous recurrent neural networks (RNNs), Transformers process entire sequences of text simultaneously, allowing for massive parallelization during training.
+
+![Transformer Architecture](https://picsum.photos/seed/transformer/800/400?blur=2)
 
 ### Self-Attention
 
@@ -32,6 +36,8 @@ The key innovation is the **self-attention mechanism**. It allows the model to w
 1. **Pre-training**: The model is trained on a massive corpus of text to predict the next word. This is where it learns grammar, facts, and reasoning abilities.
 2. **Fine-tuning**: The model is further trained on specific tasks, such as answering questions or summarizing text.
 3. **RLHF (Reinforcement Learning from Human Feedback)**: This crucial step aligns the model's outputs with human preferences, making it safer and more helpful.
+
+> The alignment problem is perhaps the most critical challenge we face in AI today. Ensuring models are helpful, honest, and harmless requires continuous innovation.
 
 ## The Future
 
