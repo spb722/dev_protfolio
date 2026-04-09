@@ -10,6 +10,14 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "expenseflow",
+    title: "ExpenseFlow — AI-First Expense Tracker",
+    description: "AI-first mobile expense tracker for UPI-native professionals in India. Five AI-powered input methods: receipt OCR (Llama 4 Scout via Groq), on-device bank SMS parsing, voice input, clipboard UPI parsing, and share-intent capture. Smart categorization learns from user corrections; recurring expense detection runs silently in the background. Built entirely via an agent-driven workflow (BMAD Method) — a Hermes agent handles agentic tool-use and multi-step reasoning, Claude drives architecture decisions and documentation, and Sachin orchestrates as decision-maker. Vision inference routes through a Supabase Edge Function proxy so the API key never ships in the client.",
+    technologies: ["React Native", "Expo", "Supabase", "Llama 4 Scout", "Groq Cloud", "TypeScript", "PostgreSQL", "EAS Build"],
+    liveUrl: "https://expense-flow-ui.onrender.com",
+    year: "2025"
+  },
+  {
     id: "aarya-ai-chatbot",
     title: "Aarya — Multi-Agent AI Chatbot",
     description: "Production multi-agent chatbot powered by a custom embedded RAG pipeline (LangChain + Redis Stack vector store + OpenAI/Llama) with a FastAPI serving layer. Automated over 80% of internal onboarding workflows and external customer queries, reducing manual intervention from 15 minutes to under 2 minutes. Includes GRPO fine-tuning with LLM-as-a-Judge reward and Llama Guard for enterprise compliance.",
